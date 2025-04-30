@@ -1,6 +1,6 @@
 package org.example.data;
 
-public class OrderingUser {
+public final class OrderingUser {
     private final String firstname;
     private final String lastname;
     private final String email;

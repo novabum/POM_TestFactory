@@ -1,6 +1,6 @@
 package org.example.data;
 
-public class OrderedProducts {
+public final class OrderedProducts {
     private final String title;
     private final int quantity;
     private final double price;
@@ -10,6 +10,6 @@ public class OrderedProducts {
         this.title = title;
         this.quantity = quantity;
         this.price = price;
-        this.totalPrice = quantity*quantity;
+        this.totalPrice = quantity*price;
     }
 }

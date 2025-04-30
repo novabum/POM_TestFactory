@@ -3,16 +3,11 @@ package test.e2e;
 import Model.MyUserFactory;
 import Model.UserType;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.asserts.SoftAssert;
 import page.object.factory.login.LoginPageController;
-import page.object.login.LoginPage;
-
-import java.util.List;
 
 public class FirstTest {
     WebDriver DRIVER = new ChromeDriver();
