@@ -1,9 +1,7 @@
 package data;
 
 import com.github.javafaker.Faker;
-import com.google.common.collect.Ordering;
-import org.example.data.Order;
-import org.example.data.OrderingUser;
+import michaelclement.eu.data.OrderingUser;
 
 import java.util.Locale;
 

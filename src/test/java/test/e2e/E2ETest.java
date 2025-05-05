@@ -1,17 +1,16 @@
 package test.e2e;
 
 import Util.DriverFactory;
-import org.example.products.ProductsPageController;
-import org.junit.jupiter.api.Test;
+import michaelclement.eu.pages.product.ProductsPageController;
 import org.openqa.selenium.WebDriver;
-import page.object.factory.login.LoginPageController;
+import michaelclement.eu.pages.login.LoginPageController;
 
 public class E2ETest {
     WebDriver driver = DriverFactory.get();
     private final LoginPageController loginPage = new LoginPageController(driver);
     private final ProductsPageController productsPage = new ProductsPageController(driver);
 
-    @Test
+//    @Test
 //    public void testE2EProcess(){
 //        driver.get("");
 //        loginPage.login(MyUserFactory.get(UserType.VALID));

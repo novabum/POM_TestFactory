@@ -1,9 +1,8 @@
 package Util;
 
 import org.assertj.core.api.SoftAssertions;
-import org.example.data.Order;
+import michaelclement.eu.data.Order;
 import org.junit.jupiter.api.Assertions;
-import org.testng.asserts.SoftAssert;
 
 public class OrderAssertion {
     public void assertOrder(Order expected, Order actual){

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import page.object.factory.login.LoginPageController;
+import michaelclement.eu.pages.login.LoginPageController;
 
 public class FirstTest {
     WebDriver DRIVER = new ChromeDriver();
