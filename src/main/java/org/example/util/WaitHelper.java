@@ -7,17 +7,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class WaitHelpter {
+public class WaitHelper {
 
     private WebDriver driver;
     private final WebDriverWait wait;
 
-    public void WaitHelper(WebDriver driver){
-        this.driver = driver;
-    }
+//    public WaitHelper(WebDriver driver){
+//        this.driver = driver;
+//    }
 
-
-    public WaitHelpter(WebDriver driver, WebDriverWait wait) {
+    public WaitHelper(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofMillis(3000));
     }

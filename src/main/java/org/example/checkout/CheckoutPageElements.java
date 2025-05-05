@@ -1,7 +1,9 @@
 package org.example.checkout;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class CheckoutPageElements {
 
@@ -46,4 +48,9 @@ public class CheckoutPageElements {
 
     @FindBy (xpath = "//button[@class='table-right-button']")
     protected WebElement summaryButton;
+
+    public void CheckoutPageElements(WebDriver driver){
+        PageFactory.initElements(driver, this);
+    }
+
 }

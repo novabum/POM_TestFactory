@@ -6,15 +6,15 @@ import java.util.Set;
 
 public class Order {
 
-    private final List<OrderedProducts> orderedProducts;
+    private final List<OrderedProduct> orderedProducts;
     private final OrderingUser orderingUser;
 
-    public Order(List<OrderedProducts> orderedProducts, OrderingUser orderingUser) {
+    public Order(List<OrderedProduct> orderedProducts, OrderingUser orderingUser) {
         this.orderedProducts = List.copyOf(orderedProducts);
         this.orderingUser = orderingUser;
     }
 
-    public List<OrderedProducts> getOrderedProducts() {
+    public List<OrderedProduct> getOrderedProducts() {
         return orderedProducts;
     }
 
@@ -30,7 +30,7 @@ public class Order {
         return compareOrderedProductsList(((Order) o).getOrderedProducts()) && Objects.equals(orderingUser, order.orderingUser);
     }
 
-    private boolean compareOrderedProductsList(List<OrderedProducts> that){
+    private boolean compareOrderedProductsList(List<OrderedProduct> that){
         if (that.size() != this.orderedProducts.size()) return false;
         return  (Set.copyOf(that).equals(Set.copyOf(this.orderedProducts)));
     }
