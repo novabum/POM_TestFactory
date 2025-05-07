@@ -1,5 +1,5 @@
-package Model;
+package data;
 
-public enum UserType {
+public enum MyUserType {
     VALID, INVALID_PASSWORD, INVALID_USERNAME, VALID_ADMIN
 }

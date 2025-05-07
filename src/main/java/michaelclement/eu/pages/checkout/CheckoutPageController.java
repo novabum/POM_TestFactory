@@ -2,7 +2,7 @@ package michaelclement.eu.pages.checkout;
 
 import michaelclement.eu.data.Address;
 import michaelclement.eu.data.OrderingUser;
-import michaelclement.eu.di.Dependencies;
+import michaelclement.eu.Dependencies;
 import michaelclement.eu.util.WaitHelper;
 import org.openqa.selenium.WebDriver;
 
@@ -14,6 +14,7 @@ public class CheckoutPageController extends CheckoutPageElements {
         super(driver);
         waitHelper = Dependencies.getWaitHelper(driver);
     }
+
     public void fillCheckoutForm(OrderingUser orderingUser){
         fillFirstName(orderingUser.getFirstName());
         fillLastName(orderingUser.getLastName());

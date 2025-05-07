@@ -35,7 +35,7 @@ public class WaitHelper {
             element.sendKeys(text);
     }
 
-    public String  getElementText(WebElement element){
+    public String getElementText(WebElement element){
         wait.until(ExpectedConditions.and(
                 ExpectedConditions.visibilityOf(element),
                 ExpectedConditions.elementToBeClickable(element),

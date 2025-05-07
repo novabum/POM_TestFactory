@@ -9,10 +9,21 @@ import java.util.List;
 import java.util.Random;
 
 public class OrderFactory {
-//    private static final Random RANDOM = new Random();
-//    private static final List<OrderedProduct> initialList = new ArrayList<>();
-//    private static final List<OrderedProduct> adminProductList = new ArrayList<>();
-//
+    private static final Random RANDOM = new Random();
+    private static final List<OrderedProduct> initialList = new ArrayList<>();
+    private static final List<OrderedProduct> adminProductList = new ArrayList<>();
+
+    public static OrderedProduct getRandomProduct(List<OrderedProduct> productList) {
+        int index = RANDOM.nextInt(productList.size());
+        OrderedProduct product = productList.get(index);
+        int quantity = RANDOM.nextInt(11);
+        int price = Integer.parseInt(product.getPrice().substring(1));
+        int totalPrice = price * quantity;
+        String totalPriceString = "$" + totalPrice;
+        productList.remove(index);
+        return new OrderedProduct(product.getName(), quantity, product.getPrice(), totalPriceString);
+    }
+
 //    public static Order getRandom(int productCount) {
 //        return getRandomMinAdmin(productCount, 0);
 //    }
@@ -27,7 +38,7 @@ public class OrderFactory {
 //            ));
 //        }
 //    }
-//
+
 //    private static Order getRandomMinAdmin(int productCount, int i) {
 //        uploadInitialList();
 //        List<OrderedProduct> orderedProductList = new ArrayList<>();
@@ -44,9 +55,7 @@ public class OrderFactory {
 ////            OrderingUserFactory.getRandom(),
 ////            orderedProductList
 //    );
-//
-//    }
-//
+//}
 //    private static void uploadInitialList(){
 //        initialList.clear();
 //        initialList.add(new OrderedProduct(
@@ -76,15 +85,4 @@ public class OrderFactory {
 //
 //    }
 //
-//    public static OrderedProduct getRandomProduct(List<OrderedProduct> productList){
-//        int index = RANDOM.nextInt(productList.size());
-//        OrderedProduct product = productList.get(index);
-//        int quantity = RANDOM.nextInt(11);
-//        int price = Integer.parseInt(product.getPrice().substring(1));
-//        int totalPrice = price * quantity;
-//        String totalPriceString = "$" + totalPrice;
-//        productList.remove(index);
-//        return new OrderedProduct(product.getName(), quantity, product.getPrice(), totalPriceString);
-//    }
-
 }

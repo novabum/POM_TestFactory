@@ -1,6 +1,7 @@
 package michaelclement.eu.pages.login;
 
 import Model.MyUser;
+import michaelclement.eu.Dependencies;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,14 +11,14 @@ import java.time.Duration;
 
 public class LoginPageController extends LoginPageElements {
 
-       private final WebDriverWait wait;
+    private final WebDriverWait wait;
 
     public LoginPageController(WebDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(3000));
+        waitHelper = Dependencies.getWaitHelper(driver);
     }
 
-    public void login(MyUser myUser){
+    public void login(MyUser myUser) {
         fillUsernameField(myUser.username());
         fillPasswordField(myUser.password());
         clickLoginButton();
@@ -36,7 +37,8 @@ public class LoginPageController extends LoginPageElements {
         //timeout exception-el tud eldobódni ezért try-ba tesszük
     }
 
-    private void fillPasswordField(String password) { passwordField.sendKeys(password);
+    private void fillPasswordField(String password) {
+        passwordField.sendKeys(password);
     }
 
     private void clickLoginButton() {

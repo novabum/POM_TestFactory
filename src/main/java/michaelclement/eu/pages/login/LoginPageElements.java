@@ -1,11 +1,13 @@
 package michaelclement.eu.pages.login;
 
+import michaelclement.eu.Dependencies;
+import michaelclement.eu.pages.PageParent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPageElements {
+public class LoginPageElements extends PageParent {
 
     @FindBy(xpath = "//input[@id='username']")
     protected WebElement usernameField;
@@ -20,6 +22,7 @@ public class LoginPageElements {
     //ami fontos exception megelőzéséhez
     //A konstruktor megkapja a webdrivert, hogy inicializálni tudja az elemeket.
     public LoginPageElements(WebDriver driver) {
+        super(Dependencies.getWaitHelper(driver), driver);
         PageFactory.initElements(driver, this);
     }
 }

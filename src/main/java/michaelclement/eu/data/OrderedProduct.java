@@ -1,15 +1,34 @@
 package michaelclement.eu.data;
 
 public final class OrderedProduct {
-    private final String title;
+    private final String name;
     private final int quantity;
-    private final double price;
-    private final double totalPrice;
+    private final String price;
+    private final String totalPrice;
 
-    public OrderedProduct(String title, int quantity, double price, double totalPrice) {
-        this.title = title;
+    public OrderedProduct(String name, int quantity, String price, String totalPrice) {
+        this.name = name;
         this.quantity = quantity;
         this.price = price;
         this.totalPrice = totalPrice;
     }
+
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
+
+

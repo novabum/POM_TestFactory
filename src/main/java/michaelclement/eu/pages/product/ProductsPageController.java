@@ -1,5 +1,7 @@
 package michaelclement.eu.pages.product;
 
+import michaelclement.eu.Dependencies;
+import michaelclement.eu.util.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -8,10 +10,13 @@ import java.util.List;
 
 public class ProductsPageController extends ProductsPageElements {
 
+    private final WaitHelper waitHelper;
 
     public ProductsPageController(WebDriver driver) {
         super(driver);
+        waitHelper = Dependencies.getWaitHelper(driver);
     }
+
 
     public void fillSearchField(String searchPhrase) {
         searchProductsInput.sendKeys(searchPhrase);

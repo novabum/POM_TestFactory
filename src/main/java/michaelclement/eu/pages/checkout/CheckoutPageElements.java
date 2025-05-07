@@ -1,5 +1,6 @@
 package michaelclement.eu.pages.checkout;
 
+import michaelclement.eu.Dependencies;
 import michaelclement.eu.pages.PageParent;
 import michaelclement.eu.util.WaitHelper;
 import org.openqa.selenium.WebDriver;
@@ -51,8 +52,8 @@ public class CheckoutPageElements extends PageParent {
     @FindBy (xpath = "//button[@class='table-right-button']")
     protected WebElement summaryButton;
 
-    public CheckoutPageElements(WaitHelper waitHelper, WebDriver driver) {
-        super(waitHelper, driver);
+    public CheckoutPageElements(WebDriver driver) {
+        super(Dependencies.getWaitHelper(driver), driver);
         PageFactory.initElements(driver, this);
     }
 

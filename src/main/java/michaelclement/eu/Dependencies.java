@@ -1,4 +1,4 @@
-package michaelclement.eu.di;
+package michaelclement.eu;
 
 
 import michaelclement.eu.util.WaitHelper;

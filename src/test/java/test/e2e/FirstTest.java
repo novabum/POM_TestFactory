@@ -1,7 +1,7 @@
 package test.e2e;
 
-import Model.MyUserFactory;
-import Model.UserType;
+import data.MyUserFactory;
+import data.MyUserType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ public class FirstTest {
 
 
     public void sdgfasdf() {
-        loginPage.login(MyUserFactory.get(UserType.VALID));
+        loginPage.login(MyUserFactory.get(MyUserType.VALID));
     }
 
     @BeforeEach
@@ -36,7 +36,7 @@ public class FirstTest {
     @Test
     public void loginTest() throws InterruptedException {
         DRIVER.get("https://www.michaelclement.eu/practice-webshop-login/");
-        loginPage.login(MyUserFactory.get(UserType.VALID));
+        loginPage.login(MyUserFactory.get(MyUserType.VALID));
 //        Assertions.assertThrows(NoSuchElementException.class, () -> DRIVER.findElement(USERNAME_FIELD_BY));
     }
 //
