@@ -16,12 +16,12 @@ public class OrderAssertion {
                 try {
                     softAssertions.assertThat(actual.getProducts().get(i)).isEqualTo(expected.getProducts().get(i));
                 }
-                catch (IndexOutOfBoundsException e) {
+                catch (IndexOutOfBoundsException message1) {
                     softAssertions.fail(String.format("The %dth product is missing from the cart", i+1));
                 }
             }
 
-            softAssertions.assertThat(actual.getOrderingUser().getFirstName()).isEqualTo(expected.getOrderingUser().getFirstName());
+            softAssertions.assertThat(actual.getOrderingUser().getFirstname()).isEqualTo(expected.getOrderingUser().getFirstname());
 
             softAssertions.assertAll();
 

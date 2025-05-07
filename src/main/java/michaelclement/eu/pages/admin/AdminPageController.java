@@ -1,4 +1,4 @@
-package michaelclement.eu.pages.adminHome;
+package michaelclement.eu.pages.admin;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +9,10 @@ public class AdminPageController extends AdminPageElements {
 
     public AdminPageController(WebDriver driver) {
         super(driver);
+    }
+
+    public boolean isAdminUserLoggedIn(){
+        return waitHelper.waitForElementPresent(addProductButton);
     }
 
     public void clickAddProductNTimes(Integer number){

@@ -14,4 +14,24 @@ public class Address {
         this.country = country;
         this.zip = zip;
     }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public String getZip() {
+        return zip;
+    }
 }

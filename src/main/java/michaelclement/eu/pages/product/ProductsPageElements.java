@@ -1,6 +1,6 @@
 package michaelclement.eu.pages.product;
 
-import michaelclement.eu.Dependencies;
+import michaelclement.eu.util.Dependencies;
 import michaelclement.eu.pages.PageParent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,8 +31,20 @@ public class ProductsPageElements extends PageParent {
     @FindBy(xpath = "//div[@class='product-card']/h3")
     protected List<WebElement> productTitles;
 
-    @FindBy(xpath = "//div[@class='product-card']/p")
+    @FindBy(xpath = "//div[@class='product-card']/p[1]")
     protected List<WebElement> productDescriptions;
+
+    @FindBy(xpath = "//div[@class='product-card']/p[2]")
+    protected List<WebElement> productPrices;
+
+    @FindBy(xpath = "//*[@id=\"post-973\"]/div/nav/div/i")
+    protected WebElement cartButton;
+
+    @FindBy(xpath = "//button[@class='plus-button']")
+    protected List<WebElement> plusButtons;
+
+    @FindBy(xpath = "//button[@class='minus-button']")
+    protected List<WebElement> minusButtons;
 
     public ProductsPageElements(WebDriver driver) {
         super(Dependencies.getWaitHelper(driver), driver);

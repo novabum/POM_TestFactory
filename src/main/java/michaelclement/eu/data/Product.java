@@ -5,9 +5,9 @@ public final class Product {
     private final String description;
     private final Double price;
 
-    public Product(String name, String desctription, Double price) {
+    public Product(String name, String description, Double price) {
         this.name = name;
-        this.description = desctription;
+        this.description = description;
         this.price = price;
     }
 

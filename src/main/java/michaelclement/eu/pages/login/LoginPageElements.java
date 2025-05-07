@@ -1,6 +1,6 @@
 package michaelclement.eu.pages.login;
 
-import michaelclement.eu.Dependencies;
+import michaelclement.eu.util.Dependencies;
 import michaelclement.eu.pages.PageParent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +21,7 @@ public class LoginPageElements extends PageParent {
 
     //ami fontos exception megelőzéséhez
     //A konstruktor megkapja a webdrivert, hogy inicializálni tudja az elemeket.
+
     public LoginPageElements(WebDriver driver) {
         super(Dependencies.getWaitHelper(driver), driver);
         PageFactory.initElements(driver, this);

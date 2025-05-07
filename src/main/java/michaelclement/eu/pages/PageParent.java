@@ -1,6 +1,6 @@
 package michaelclement.eu.pages;
 
-import michaelclement.eu.Dependencies;
+import michaelclement.eu.util.Dependencies;
 import michaelclement.eu.util.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

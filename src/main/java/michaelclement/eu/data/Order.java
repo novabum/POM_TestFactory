@@ -1,9 +1,6 @@
 package michaelclement.eu.data;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Order {
 
@@ -39,13 +36,19 @@ public class Order {
         return compareOrderedProductsList(((Order) o).getOrderedProducts()) && Objects.equals(orderingUser, order.orderingUser);
     }
 
-    private boolean compareOrderedProductsList(List<OrderedProduct> that){
+    private boolean compareOrderedProductsList(List<OrderedProduct> that) {
         if (that.size() != this.orderedProducts.size()) return false;
-        return  (Set.copyOf(that).equals(Set.copyOf(this.orderedProducts)));
+        return (Set.copyOf(that).equals(Set.copyOf(this.orderedProducts)));
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(orderedProducts, orderingUser);
     }
+
+    public Map<Object, Object> getProducts() {
+    return null;}
+
+
+
 }

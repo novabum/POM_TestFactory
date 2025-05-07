@@ -1,38 +1,42 @@
 package michaelclement.eu.pages.checkout;
 
-import michaelclement.eu.Dependencies;
+import michaelclement.eu.util.Dependencies;
 import michaelclement.eu.pages.PageParent;
-import michaelclement.eu.util.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class CheckoutPageElements extends PageParent {
 
     @FindBy (xpath = "//input[@id='first-name']")
-    protected WebElement firstname;
+    protected WebElement firstnameInput;
 
     @FindBy (xpath = "//input[@id='last-name']")
-    protected WebElement lastname;
+    protected WebElement lastnameInput;
 
     @FindBy (xpath = "//input[@id='address-line-1']")
-    protected WebElement addressLine1;
+    protected WebElement addressLine1Input;
 
     @FindBy (xpath = "//input[@id='address-line-1']")
-    protected WebElement addressLine2;
+    protected WebElement addressLine2Input;
 
     @FindBy (xpath = "//input[@id='city']")
-    protected WebElement city;
+    protected WebElement cityInput;
 
     @FindBy (xpath = "//input[@id='email']")
-    protected WebElement email;
+    protected WebElement emailInput;
 
     @FindBy (xpath = "//input[@id='zip-code']")
-    protected WebElement zip;
+    protected WebElement zipInput;
 
     @FindBy (xpath = "//select[@id='country']")
     protected WebElement countryDropDown;
+
+    @FindBy (xpath = "//option[@data-test-id='country-option']")
+    protected List<WebElement> countryDropDownOptions;
 
     @FindBy (xpath = "//option[@value='Hungary']")
     protected WebElement optionHungary;

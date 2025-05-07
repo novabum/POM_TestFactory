@@ -8,14 +8,18 @@ import org.openqa.selenium.safari.SafariDriver;
 public class DriverFactory {
 
     //paraméterbe jöhet a browserType
-    public static WebDriver get(){
-//        var system = System.getProperty("os"); // valahogy ki tudjuk szedni az oprendszert
-//        //logika jöhet ide, oprendszer stb
-//        if ("windows".equals(system))
-//            return new ChromeDriver();
-//        if ("mac".equals(system))
-//            return new SafariDriver();
-        return new ChromeDriver();
+    //logika jöhet ide, oprendszer stb
+
+    public static WebDriver get() {
+        String os = System.getProperty("os.name").toLowerCase();  //ki tudjuk szedni az oprendszert
+
+        if (os.contains("win")) {
+            return new ChromeDriver(); // Ensure chromedriver.exe is on PATH
+        } else if (os.contains("mac")) {
+            return new SafariDriver(); // SafariDriver is preinstalled on macOS
+        } else {
+            throw new UnsupportedOperationException("Not supported Operating System");
+        }
     }
 
 //    public static WebDriver get(BrowserType browserType){

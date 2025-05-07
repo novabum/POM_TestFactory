@@ -1,6 +1,6 @@
 package michaelclement.eu.pages.summary;
 
-import michaelclement.eu.Dependencies;
+import michaelclement.eu.util.Dependencies;
 import michaelclement.eu.pages.PageParent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +33,7 @@ public class SummaryPageElements extends PageParent {
     protected WebElement country;
 
     @FindBy (xpath = "//td[@data-test-id='product-name']")
-    protected List<WebElement> productNames;
+    protected List<WebElement> productTitles;
 
     @FindBy (xpath = "//td[@data-test-id='quantity']")
     protected List<WebElement> productQuantities;

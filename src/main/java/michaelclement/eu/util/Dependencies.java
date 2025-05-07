@@ -1,7 +1,6 @@
-package michaelclement.eu;
+package michaelclement.eu.util;
 
 
-import michaelclement.eu.util.WaitHelper;
 import org.openqa.selenium.WebDriver;
 
 public final class Dependencies {

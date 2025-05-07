@@ -150,11 +150,7 @@ public class FirstTest {
 //        softAssert.assertAll();
 //    }
 
-    @AfterEach
-    public void tearDown() {
-        DRIVER.close();
 
-    }
 
 
 }
