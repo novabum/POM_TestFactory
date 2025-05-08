@@ -32,4 +32,8 @@ public class SummaryPageController extends SummaryPageElements {
     }
 
 
+    public OrderedProduct getFirstOrderedProduct() {
+        return getOrderedProducts().get(0);
+    }
+
 }

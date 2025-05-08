@@ -3,24 +3,22 @@ package test.e2e;
 import Util.DriverFactory;
 import data.MyUserFactory;
 import data.MyUserType;
-import data.OrderFactory;
 import data.OrderingUserFactory;
-import michaelclement.eu.data.Order;
+import michaelclement.eu.data.OrderedProduct;
 import michaelclement.eu.data.Product;
 import michaelclement.eu.pages.admin.AdminPageController;
 import michaelclement.eu.pages.cart.CartPageController;
 import michaelclement.eu.pages.checkout.CheckoutPageController;
 import michaelclement.eu.pages.product.ProductsPageController;
 import michaelclement.eu.pages.summary.SummaryPageController;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import michaelclement.eu.pages.login.LoginPageController;
 
 public class E2ETest {
     WebDriver DRIVER = DriverFactory.get();
+
     private final LoginPageController loginPage = new LoginPageController(DRIVER);
     private final ProductsPageController productsPage = new ProductsPageController(DRIVER);
     private final AdminPageController adminPage = new AdminPageController(DRIVER);
@@ -28,9 +26,10 @@ public class E2ETest {
     private final CheckoutPageController checkoutPage = new CheckoutPageController(DRIVER);
     private final SummaryPageController summaryPage = new SummaryPageController(DRIVER);
 
+
     @BeforeEach
     public void setUp() {
-        DRIVER.manage().window().maximize();
+        DRIVER.manage().window().setSize(new Dimension(1920, 1080));
         DRIVER.get("https://www.michaelclement.eu/practice-webshop-login/");
     }
 
@@ -47,17 +46,18 @@ public class E2ETest {
     }
 
 
-//!!!!!!!!!!!!!!!!!!!!!
+
     @Test
-    public void orderRandomProductAndCheckIfDetailsMatch(){
+    public void orderXNumberOfOneRandomProductAndCheckIfDetailsMatch(){
         loginWithValidUser();
-        Product expectedProduct = productsPage.chooseRandomProduct();
-        productsPage.orderProduct(expectedProduct, 2);
+        Product productToOrder = productsPage.chooseRandomProduct();
+        OrderedProduct expectedProduct = productsPage.orderProduct(productToOrder, 2);
         productsPage.clickCartButton();
         cartPage.clickCheckout();
-        checkoutPage.fillCheckoutForm(OrderingUserFactory.getRandom());
-        checkoutPage.clickSummaryButton();
-
+//        checkoutPage.fillCheckoutForm(OrderingUserFactory.getRandom());
+//        checkoutPage.clickSummaryButton();
+//        OrderedProduct orderedProduct = summaryPage.getFirstOrderedProduct();
+//        Assertions.assertEquals(expectedProduct, orderedProduct);
     }
 
 

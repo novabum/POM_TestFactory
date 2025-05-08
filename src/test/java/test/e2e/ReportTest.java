@@ -1,5 +1,11 @@
 package test.e2e;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import org.junit.jupiter.api.*;
+
+
 public class ReportTest {
 
     private static ExtentReports extent;

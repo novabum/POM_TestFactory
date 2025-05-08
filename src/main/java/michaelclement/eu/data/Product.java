@@ -1,5 +1,7 @@
 package michaelclement.eu.data;
 
+import java.util.Objects;
+
 public final class Product {
     private final String name;
     private final String description;
@@ -28,5 +30,18 @@ public final class Product {
 
     public Double getPrice() {
         return price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return name.equals(product.name) && price == product.price;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, price);
     }
 }
