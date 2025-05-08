@@ -46,7 +46,7 @@ public class CheckoutPageController extends CheckoutPageElements {
     }
 
     private void fillAddressLine2(String addressLine2) {
-        waitHelper.fillTextField(addressLine1Input, addressLine2);
+        waitHelper.fillTextField(addressLine2Input, addressLine2);
     }
 
     private void fillEmail(String email) {
@@ -54,11 +54,11 @@ public class CheckoutPageController extends CheckoutPageElements {
     }
 
     private void fillLastName(String lastname) {
-        waitHelper.fillTextField(emailInput, lastname);
+        waitHelper.fillTextField(lastnameInput, lastname);
     }
 
     private void fillFirstName(String firstname) {
-        waitHelper.fillTextField(emailInput, firstname);
+        waitHelper.fillTextField(firstnameInput, firstname);
     }
 
     public void clickSummaryButton() {

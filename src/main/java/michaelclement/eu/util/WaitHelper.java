@@ -1,5 +1,6 @@
 package michaelclement.eu.util;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -66,7 +67,7 @@ public class WaitHelper {
     public boolean waitForElementPresent(WebElement element) {
         try {
             return wait.until(ExpectedConditions.visibilityOf(element)) != null;
-        } catch (TimeoutException e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }

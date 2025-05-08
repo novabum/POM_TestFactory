@@ -11,7 +11,7 @@ public class AddressFactory {
     public static Address getRandrom() {
         return new Address(
                 faker.address().streetAddress(),
-                faker.address().secondaryAddress(),
+                faker.address().streetAddressNumber(),
                 faker.address().city(),
                 Country.randomCountry(),
                 faker.address().zipCode()

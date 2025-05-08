@@ -32,6 +32,9 @@ public class SummaryPageElements extends PageParent {
     @FindBy (xpath = "//td[@data-test-id='country']")
     protected WebElement country;
 
+    @FindBy (xpath = "//td[@data-test-id='zip']")
+    protected WebElement zip;
+
     @FindBy (xpath = "//td[@data-test-id='product-name']")
     protected List<WebElement> productTitles;
 
@@ -47,7 +50,7 @@ public class SummaryPageElements extends PageParent {
     @FindBy (xpath = "//td[@data-test-id='total-price']")
     protected WebElement totalPrice;
 
-    @FindBy (xpath = "//td[@data-test-id='table-right-button']")
+    @FindBy (xpath = "//button[@class='table-right-button']")
     protected WebElement orderButton;
 
     public SummaryPageElements(WebDriver driver) {

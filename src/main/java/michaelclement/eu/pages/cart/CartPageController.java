@@ -1,6 +1,5 @@
 package michaelclement.eu.pages.cart;
 
-import michaelclement.eu.data.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -18,43 +17,75 @@ public class CartPageController extends CartPageElements {
     }
 
 
-
-    public List<String> getProductNames(List<WebElement> productNames){
+    public List<String> getProductNames(List<WebElement> productNames) {
         List<String> names = new ArrayList<>();
-        for (WebElement element : productNames){
+        for (WebElement element : productNames) {
             names.add(element.getText());
         }
         return names;
     }
 
-    public List<Integer> getProductQuantities(List<WebElement> quantities){
+    public List<Integer> getProductQuantities(List<WebElement> quantities) {
         List<Integer> quantity = new ArrayList<>();
-        for (WebElement element : quantities){
+        for (WebElement element : quantities) {
             quantity.add(parseInt(element.getText()));
         }
         return quantity;
     }
 
-    public List<Integer> getTotalPrices(List<WebElement> totalPrices){
-        List <Integer> prices = new ArrayList<>();
-        for (WebElement element : totalPrices){
+    public List<Integer> getSubTotalPrices() {
+        List<Integer> prices = new ArrayList<>();
+        for (WebElement element : totalPrices) {
             prices.add(
-              parseInt(element.getText().substring(1))
+                    parseInt(element.getText().substring(1))
             );
         }
         return prices;
     }
 
-    public void addOneRandomProductToCart(){
+    public List<Integer> getPrices() {
+        List<Integer> itemPrices = new ArrayList<>();
+        for (WebElement element : productPrices) {
+            itemPrices.add(
+                    parseInt(element.getText().substring(1))
+            );
+        }
+        return itemPrices;
+    }
+
+    public void addOneRandomProductToCart() {
         int index = RANDOM.nextInt(plusButtons.size());
         plusButtons.get(index).click();
     }
 
-    public Integer getCartTotalPrice(WebElement cartTotalPrice){
+    public Integer getCartTotalPrice() {
         return parseInt(cartTotalPrice.getText().substring(1));
     }
 
     public void clickCheckout() {
         waitHelper.click(checkoutButton);
+    }
+
+    public void emptyCart() {
+        while (!isCartEmpty()) {
+            waitHelper.click(minusButtons.getFirst());
+        }
+    }
+
+    public boolean isCartEmpty() {
+        return waitHelper.waitForElementPresent(singleMinusButton);
+    }
+
+    public boolean areCalculationsCorrect() {
+           Integer cartTotal = getCartTotalPrice();
+           Integer testCartTotal = 0;
+        for (int i = 0; i < quantityElements.size(); i++){
+           Integer quantity = Integer.parseInt(quantityElements.get(i).getDomProperty("value")); //nem lehet null
+           Integer itemPrice = getPrices().get(i);
+           Integer subtotal = getSubTotalPrices().get(i);
+           if (quantity*itemPrice != subtotal) return false;
+           testCartTotal += subtotal;
+        }
+        return testCartTotal.equals(cartTotal);
     }
 }

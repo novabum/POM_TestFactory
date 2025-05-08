@@ -1,7 +1,6 @@
 package michaelclement.eu.pages.summary;
 
-import michaelclement.eu.data.OrderedProduct;
-import michaelclement.eu.data.Product;
+import michaelclement.eu.data.*;
 import michaelclement.eu.util.Dependencies;
 import michaelclement.eu.util.WaitHelper;
 import org.openqa.selenium.WebDriver;
@@ -31,9 +30,27 @@ public class SummaryPageController extends SummaryPageElements {
         return getOrderedProducts().get(index);
     }
 
+    public OrderingUser getOrderingUser() {
+        return new OrderingUser(
+                firstName.getText(),
+                lastName.getText(),
+                email.getText(),
+                new Address(
+                        addressLine1.getText(),
+                        addressLine2.getText(),
+                        city.getText(),
+                        Country.fromString(country.getText()),
+                        zip.getText()
+                )
+        );
+    }
+
 
     public OrderedProduct getFirstOrderedProduct() {
         return getOrderedProducts().get(0);
     }
 
+    public void clickOrderButton() {
+        waitHelper.click(orderButton);
+    }
 }

@@ -7,6 +7,7 @@ public final class Dependencies {
     private static WaitHelper waitHelper;
     private static WebDriver driver;
 
+    //Singleton
     public static WaitHelper getWaitHelper(WebDriver driver) {
         if (waitHelper == null) {
             waitHelper = new WaitHelper(driver);

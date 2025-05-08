@@ -5,16 +5,22 @@ import data.MyUserFactory;
 import data.MyUserType;
 import data.OrderingUserFactory;
 import michaelclement.eu.data.OrderedProduct;
+import michaelclement.eu.data.OrderingUser;
 import michaelclement.eu.data.Product;
+import michaelclement.eu.header.HeaderController;
 import michaelclement.eu.pages.admin.AdminPageController;
 import michaelclement.eu.pages.cart.CartPageController;
 import michaelclement.eu.pages.checkout.CheckoutPageController;
+import michaelclement.eu.pages.order_done.ConfirmationPageController;
 import michaelclement.eu.pages.product.ProductsPageController;
+import michaelclement.eu.pages.product.SortType;
 import michaelclement.eu.pages.summary.SummaryPageController;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import michaelclement.eu.pages.login.LoginPageController;
+
+import java.util.Objects;
 
 public class E2ETest {
     WebDriver DRIVER = DriverFactory.get();
@@ -25,7 +31,8 @@ public class E2ETest {
     private final CartPageController cartPage = new CartPageController(DRIVER);
     private final CheckoutPageController checkoutPage = new CheckoutPageController(DRIVER);
     private final SummaryPageController summaryPage = new SummaryPageController(DRIVER);
-
+    private final ConfirmationPageController confirmationPage = new ConfirmationPageController(DRIVER);
+    private final HeaderController header = new HeaderController(DRIVER);
 
     @BeforeEach
     public void setUp() {
@@ -45,20 +52,134 @@ public class E2ETest {
         Assertions.assertTrue(adminPage.isAdminUserLoggedIn());
     }
 
+    @Test
+    public void loggedOutUserCannotAccessProtectedPageTest(){
+        loginWithValidUser();
+        header.clickLogoutButton();
+        DRIVER.get("https://www.michaelclement.eu/practice-webshop-products/");
+        Assertions.assertTrue(Objects.requireNonNull(DRIVER.getCurrentUrl()).contains("-login"));
 
+    }
 
     @Test
-    public void orderXNumberOfOneRandomProductAndCheckIfDetailsMatch(){
+    public void orderXNumberOfOneRandomProductAndCheckIfTheirDetailsMatchTest(){
         loginWithValidUser();
         Product productToOrder = productsPage.chooseRandomProduct();
-        OrderedProduct expectedProduct = productsPage.orderProduct(productToOrder, 2);
+        //külön kezelem a productot és az orderedproductot, ezért itt konverzió történik:
+        OrderedProduct expectedProduct = productsPage.addNumberOfThisProductToCart(productToOrder, 2);
         productsPage.clickCartButton();
         cartPage.clickCheckout();
-//        checkoutPage.fillCheckoutForm(OrderingUserFactory.getRandom());
-//        checkoutPage.clickSummaryButton();
-//        OrderedProduct orderedProduct = summaryPage.getFirstOrderedProduct();
-//        Assertions.assertEquals(expectedProduct, orderedProduct);
+        checkoutPage.fillCheckoutForm(OrderingUserFactory.getRandom());
+        checkoutPage.clickSummaryButton();
+        OrderedProduct orderedProduct = summaryPage.getFirstOrderedProduct();
+        Assertions.assertEquals(expectedProduct, orderedProduct);
     }
+
+    @Test
+    public void checkIfOrderingUserDetailsMatchTest(){
+        loginWithValidUser();
+        productsPage.clickPlusNTimes(1,1);
+        productsPage.clickCartButton();
+        cartPage.clickCheckout();
+        OrderingUser expectedOrderingUser = OrderingUserFactory.getRandom();
+        checkoutPage.fillCheckoutForm(expectedOrderingUser);
+        checkoutPage.clickSummaryButton();
+        OrderingUser actualOrderingUser = summaryPage.getOrderingUser();
+        Assertions.assertEquals(expectedOrderingUser, actualOrderingUser);
+    }
+
+    @Test
+    public void checkIfOrderIsSuccessfulTest(){
+        loginWithValidUser();
+        productsPage.clickPlusNTimes(1,1);
+        productsPage.clickCartButton();
+        cartPage.clickCheckout();
+        checkoutPage.fillCheckoutForm(OrderingUserFactory.getRandom());
+        checkoutPage.clickSummaryButton();
+        summaryPage.clickOrderButton();
+        Assertions.assertTrue(confirmationPage.verifyOrderConfirmation());
+    }
+
+    @Test
+    public void productSortByPriceTest(){
+        loginWithValidUser();
+        productsPage.sortBySelect(SortType.PRICE);
+       Assertions.assertTrue(productsPage.arePricesSortedAlphabetically());
+    }
+
+    @Test
+    public void productSortByNameTest(){
+        loginWithValidUser();
+        productsPage.sortBySelect(SortType.NAME);
+        Assertions.assertTrue(productsPage.isSortedAlphabetically());
+    }
+
+    @Test
+    public void deleteProductsFromCartTest(){
+        loginWithValidUser();
+        productsPage.addMaxTenRandomProductsToCart();
+        productsPage.clickCartButton();
+        cartPage.emptyCart();
+        Assertions.assertTrue(cartPage.isCartEmpty());
+    }
+
+    //Ebbű ticket lesz more
+    @Test
+    public void completeOrderWithoutProductsAddedToCartTest(){
+        loginWithValidUser();
+        productsPage.clickCartButton();
+        cartPage.clickCheckout();
+        checkoutPage.fillCheckoutForm(OrderingUserFactory.getRandom());
+        checkoutPage.clickSummaryButton();
+        summaryPage.clickOrderButton();
+        Assertions.assertFalse(confirmationPage.verifyOrderConfirmation());
+    }
+
+    @Test
+    public void productPageSearchFieldTest(){
+        loginWithValidUser();
+        String testString = "Michael's Notebook";
+        productsPage.typeInSearchField(testString);
+        Assertions.assertEquals(testString, productsPage.getTitles().getFirst());
+    }
+
+    @Test void priceFilterMinTest(){
+        Double testPrice = 13.0;
+        loginWithValidUser();
+        productsPage.typeAndEnterPriceMinField(testPrice);
+        Assertions.assertFalse(productsPage.isAnyPriceLowerThan(testPrice));
+    }
+
+    @Test void priceFilterMaxTest(){
+        Double testPrice = 13.0;
+        loginWithValidUser();
+        productsPage.typeAndEnterPriceMaxField(testPrice);
+        Assertions.assertTrue(productsPage.isAnyPriceLowerThan(testPrice));
+    }
+
+    @Test
+    public void plusAndMinusButtonTest(){
+        loginWithValidUser();
+        productsPage.clickEveryAddToCartButton();
+        productsPage.clickEveryRemoveFromCartButton();
+        Assertions.assertTrue(productsPage.isEveryQuantityEqualsZero());
+    }
+
+    @Test
+    public void calculationsInCartTest(){
+        loginWithValidUser();
+        int numberOfProducts = 10;
+        productsPage.addRandomProductsToCart(numberOfProducts);
+        productsPage.clickCartButton();
+        Assertions.assertTrue(cartPage.areCalculationsCorrect());
+    }
+
+
+
+
+
+
+
 
 
 

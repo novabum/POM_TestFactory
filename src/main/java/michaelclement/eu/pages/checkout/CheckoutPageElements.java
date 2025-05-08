@@ -20,7 +20,7 @@ public class CheckoutPageElements extends PageParent {
     @FindBy (xpath = "//input[@id='address-line-1']")
     protected WebElement addressLine1Input;
 
-    @FindBy (xpath = "//input[@id='address-line-1']")
+    @FindBy (xpath = "//input[@id='address-line-2']")
     protected WebElement addressLine2Input;
 
     @FindBy (xpath = "//input[@id='city']")

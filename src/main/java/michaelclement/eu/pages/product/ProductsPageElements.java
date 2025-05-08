@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class ProductsPageElements extends PageParent {
-    @FindBy(xpath = "//input[@id='product-search]")
+    @FindBy(xpath = "//input[@id='product-search']")
     protected WebElement searchProductsInput;
 
     @FindBy(xpath = "//input[@id='min-price']")
@@ -37,14 +37,17 @@ public class ProductsPageElements extends PageParent {
     @FindBy(xpath = "//div[@class='product-card']/p[2]")
     protected List<WebElement> productPrices;
 
-    @FindBy(xpath = "//*[@id=\"post-973\"]/div/nav/div/i")
-    protected WebElement cartButton;
-
     @FindBy(xpath = "//button[@class='plus-button']")
     protected List<WebElement> plusButtons;
 
     @FindBy(xpath = "//button[@class='minus-button']")
     protected List<WebElement> minusButtons;
+
+    @FindBy(xpath = "//input[@class='quantity-input']")
+    protected List<WebElement> quantityElements;
+
+    @FindBy(xpath = "//div[@class='shopping-cart']")
+    protected WebElement cartButton;
 
     public ProductsPageElements(WebDriver driver) {
         super(Dependencies.getWaitHelper(driver), driver);

@@ -11,11 +11,26 @@ public enum Country {
     private static final Random RANDOM = new Random();
     private final String value;
 
-    Country(String value) {this.value = value;};
+    Country(String value) {
+        this.value = value;
+    }
 
-    public static Country randomCountry (){
+    public static Country randomCountry() {
         Country[] addressCountries = values();
         return addressCountries[RANDOM.nextInt(addressCountries.length)];
     }
-    public String getValue() {return value;}
+
+    public String getValue() {
+        return value;
+    }
+
+    public static Country fromString(String countryName) {
+        for (Country country : values()) {
+            if (country.value.equalsIgnoreCase(countryName)) {
+                return country;
+            }
+        }
+        return null;
+    }
+
 }

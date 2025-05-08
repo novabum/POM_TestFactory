@@ -31,12 +31,17 @@ public class CartPageElements extends PageParent {
     @FindBy(xpath = "//button[@class='minus-button']")
     protected List<WebElement> minusButtons;
 
+    @FindBy(xpath = "//button[@class='minus-button']")
+    protected WebElement singleMinusButton;
+
     @FindBy (xpath = "//a[@class='table-left-button']")
     protected WebElement backToProductsButton;
 
     @FindBy (xpath = "//button[@class='table-right-button']")
     protected WebElement checkoutButton;
 
+    @FindBy(xpath = "//input[@class='quantity-input']")
+    protected List<WebElement> quantityElements;
 
     public CartPageElements(WebDriver driver) {
         super(Dependencies.getWaitHelper(driver), driver);
