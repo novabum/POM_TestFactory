@@ -1,9 +1,11 @@
 package test.e2e;
 
 import Util.DriverFactory;
+import com.beust.ah.A;
 import data.MyUserFactory;
 import data.MyUserType;
 import data.OrderingUserFactory;
+import data.ProductFactory;
 import michaelclement.eu.data.OrderedProduct;
 import michaelclement.eu.data.OrderingUser;
 import michaelclement.eu.data.Product;
@@ -11,7 +13,7 @@ import michaelclement.eu.header.HeaderController;
 import michaelclement.eu.pages.admin.AdminPageController;
 import michaelclement.eu.pages.cart.CartPageController;
 import michaelclement.eu.pages.checkout.CheckoutPageController;
-import michaelclement.eu.pages.order_done.ConfirmationPageController;
+import michaelclement.eu.pages.order_confirmation.ConfirmationPageController;
 import michaelclement.eu.pages.product.ProductsPageController;
 import michaelclement.eu.pages.product.SortType;
 import michaelclement.eu.pages.summary.SummaryPageController;
@@ -19,6 +21,9 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import michaelclement.eu.pages.login.LoginPageController;
+import org.testng.asserts.SoftAssert;
+import org.testng.annotations.Test;
+
 
 import java.util.Objects;
 
@@ -38,6 +43,7 @@ public class E2ETest {
     public void setUp() {
         DRIVER.manage().window().setSize(new Dimension(1920, 1080));
         DRIVER.get("https://www.michaelclement.eu/practice-webshop-login/");
+        loginPage.clickAcceptButton();
     }
 
     @Test
@@ -123,7 +129,7 @@ public class E2ETest {
         Assertions.assertTrue(cartPage.isCartEmpty());
     }
 
-    //Ebbű ticket lesz more
+    //Ebbű ticket lesz :)
     @Test
     public void completeOrderWithoutProductsAddedToCartTest(){
         loginWithValidUser();
@@ -167,11 +173,36 @@ public class E2ETest {
 
     @Test
     public void calculationsInCartTest(){
+        loginPage.clickAcceptButton();
         loginWithValidUser();
         int numberOfProducts = 10;
         productsPage.addRandomProductsToCart(numberOfProducts);
         productsPage.clickCartButton();
         Assertions.assertTrue(cartPage.areCalculationsCorrect());
+    }
+
+    @Test
+    public void addNewProductOrderItAndCheckDetails(){
+        SoftAssert softAssert = new SoftAssert();
+        loginWithAdminUser();
+        Product expectedProduct = ProductFactory.getRandom();
+        adminPage.clickAddProductButton();
+        adminPage.fillProductDetails(expectedProduct);
+        adminPage.clickSaveButton();
+        adminPage.clickLogOutButton();
+        loginWithValidUser();
+        productsPage.addNumberOfThisProductToCart(expectedProduct, 1);
+        productsPage.clickCartButton();
+        cartPage.clickCheckout();
+        OrderingUser expectedOrderingUser = OrderingUserFactory.getRandom();
+        checkoutPage.fillCheckoutForm(expectedOrderingUser);
+        checkoutPage.clickSummaryButton();
+        OrderingUser actualOrderingUser = summaryPage.getOrderingUser();
+        summaryPage.clickOrderButton();
+
+        softAssert.assertEquals(expectedOrderingUser, actualOrderingUser, "User mismatch");
+        softAssert.assertTrue(confirmationPage.verifyOrderConfirmation(), "Ordered product mismatch");
+        softAssert.assertAll();
     }
 
 

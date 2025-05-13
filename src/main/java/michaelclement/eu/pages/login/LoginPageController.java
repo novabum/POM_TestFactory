@@ -19,6 +19,9 @@ public class LoginPageController extends LoginPageElements {
         clickLoginButton();
     }
 
+    public void clickAcceptButton() { waitHelper.click(acceptButton);
+    }
+
     private void fillUsernameField(String username) {
         waitHelper.fillTextField(usernameField, username);
     }
@@ -30,7 +33,6 @@ public class LoginPageController extends LoginPageElements {
     private void clickLoginButton() {
         waitHelper.click(loginButton);
     }
-
 
 }
 

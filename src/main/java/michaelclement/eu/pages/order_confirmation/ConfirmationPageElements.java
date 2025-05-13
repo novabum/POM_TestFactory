@@ -1,4 +1,4 @@
-package michaelclement.eu.pages.order_done;
+package michaelclement.eu.pages.order_confirmation;
 
 import michaelclement.eu.pages.PageParent;
 import michaelclement.eu.util.Dependencies;

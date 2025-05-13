@@ -71,7 +71,7 @@ public class ProductsPageController extends ProductsPageElements {
                 .findFirst()
                 .map(p -> {
                     int index = productsOnSite().indexOf(p);
-                    System.out.println(index);
+//                    System.out.println(index); //DEBUG
                     clickPlusNTimes(quantity, index);
                     return convertToOrderedProduct(p, quantity);
                 })
@@ -93,14 +93,14 @@ public class ProductsPageController extends ProductsPageElements {
         );
     }
 
-    //lehet kell majd a házinál!
-    public void orderProductByName(String productName) {
-        for (int i = 0; i < productTitles.size(); i++) {
-            if (productTitles.get(i).getText().equals(productName)) {
-                plusButtons.get(i).click();
-            }
-        }
-    }
+//    //lehet kell majd a házinál!
+//    public void orderProductByName(String productName) {
+//        for (int i = 0; i < productTitles.size(); i++) {
+//            if (productTitles.get(i).getText().equals(productName)) {
+//                plusButtons.get(i).click();
+//            }
+//        }
+//    }
 
     public boolean isPracticeUserLoggedIn() {
         return waitHelper.waitForElementPresent(sortByDropdown);

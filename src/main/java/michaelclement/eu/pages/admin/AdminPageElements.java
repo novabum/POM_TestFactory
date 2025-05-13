@@ -15,10 +15,12 @@ public class AdminPageElements extends PageParent {
     protected WebElement addProductButton;
     @FindBy (xpath = "//button[@class='save-button']")
     protected WebElement saveButton;
+    @FindBy (xpath = "//button[@id='logout-menu-button']")
+    protected WebElement logOutButton;
 
     @FindBy (xpath = "//input[@class='product-name']")
     protected List<WebElement> productName;
-    @FindBy (xpath = "//input[@class='product-description']")
+    @FindBy (xpath = "//textarea[@class='product-description']")
     protected List<WebElement> productDescription;
     @FindBy (xpath = "//input[@class='product-price']")
     protected List<WebElement> productPrice;

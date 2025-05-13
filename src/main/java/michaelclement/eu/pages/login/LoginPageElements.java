@@ -19,6 +19,9 @@ public class LoginPageElements extends PageParent {
     @FindBy(xpath = "//button[@type='submit']")
     protected WebElement loginButton;
 
+    @FindBy(xpath = "//button[@data-cky-tag='accept-button']")
+    protected WebElement acceptButton;
+
     //ami fontos exception megelőzéséhez
     //A konstruktor megkapja a webdrivert, hogy inicializálni tudja az elemeket.
 
